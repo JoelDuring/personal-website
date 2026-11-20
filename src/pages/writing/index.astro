@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articlePath, formatDate, getWriting } from '../../lib/writing';
+
+const posts = await getWriting();
+---
+<Layout title="Writing" description="Writing by Joël During.">
+  <h1>Writing</h1>
+  {posts.length ? (
+    <ul class="article-list">
+      {posts.map(({ id, data }) => (
+        <li>
+          <div class="metadata">
+            <time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
+            {data.category && <span>{data.category}</span>}
+          </div>
+          <h2><a href={articlePath(id)}>{data.title}</a></h2>
+          <p>{data.description}</p>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="lede">No articles yet.</p>
+  )}
+</Layout>

@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  background: #f8f7f3;
+  color: #252a2b;
+  --text-secondary: #565e5f;
+  --accent: #365f75;
+  --border: #dcdcd3;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.shell {
+  width: min(100% - clamp(2.5rem, 7vw, 5rem), 48rem);
+  margin-inline: auto;
+}
+
+.site-header {
+  padding-block: 0.9rem;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  color: inherit;
+  font: 600 0.9375rem/1.5 var(--mono);
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding-block: clamp(1.75rem, 4.5vw, 3rem) clamp(2.5rem, 6vw, 4rem);
+}
+
+h1 {
+  margin: 0 0 0.75rem;
+  font: 700 clamp(1.95rem, 5.5vw, 2.65rem)/1.22 var(--mono);
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+
+.lede {
+  margin: 0.65rem 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+  font: 0.875rem/1.65 var(--mono);
+}
+
+.header-inner,
+.header-inner nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.header-inner {
+  justify-content: space-between;
+}
+
+.header-inner nav a {
+  color: inherit;
+  font: 0.875rem/1.5 var(--mono);
+}
+
+.header-inner nav a:not([aria-current], :hover, :focus-visible) {
+  text-decoration: none;
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.article-list li,
+.article-heading {
+  border-bottom: 1px solid var(--border);
+  padding-block: 1rem;
+}
+
+.article-list h2 {
+  margin: 0.35rem 0 0;
+  font: 600 1.2rem/1.4 var(--mono);
+}
+
+.article-list p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.8rem;
+  color: var(--text-secondary);
+  font: 0.875rem/1.5 var(--mono);
+}
+
+.article-heading .metadata {
+  margin-top: 0.8rem;
+}
+
+main.reading {
+  max-width: 42rem;
+}
+
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  overflow-x: auto;
+  overflow-wrap: normal;
+  padding: 1rem;
+  border: 1px solid var(--border);
+}
