@@ -20,6 +20,14 @@ Use `npm run dev -- --background` to invoke the repository’s installed Astro C
 
 Before committing site changes, run `ASTRO_TELEMETRY_DISABLED=1 npm run build`. Astro may warn about the empty Writing collection until the first article is added.
 
+## Deployment
+
+Cloudflare Pages project `joelduring` is connected to `JoelDuring/personal-website` on GitHub. A push or merge to `main` triggers a production deployment. Other branches do not deploy automatically.
+
+Pages runs `npm run build` and serves `dist/`. Use the Git workflow for routine releases. Keep local development and build checks on Astro.
+
+After a release, check that the Pages deployment succeeded for the expected commit and verify the changed routes on `https://joelduring.com`. Use `https://joelduring.pages.dev` to distinguish a deployment issue from a custom-domain issue. Keep the custom domain as the canonical origin.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
