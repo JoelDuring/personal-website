@@ -1,10 +1,12 @@
 :root {
   color-scheme: light;
   background: #f8f7f3;
-  color: #252a2b;
-  --text-secondary: #565e5f;
-  --accent: #365f75;
-  --border: #dcdcd3;
+  color: #272724;
+  --muted: #64635b;
+  --accent: #884533;
+  --rule: #dbd9cf;
+  --surface: #f0eee7;
+  --marker-ink: #747166;
   --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   font-family: system-ui, sans-serif;
   line-height: 1.65;
@@ -16,8 +18,7 @@ body {
 
 a {
   color: var(--accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.24em;
+  text-underline-offset: 0.22em;
 }
 
 a:hover {
@@ -31,8 +32,8 @@ a:hover {
 
 .skip-link {
   position: absolute;
-  inset-block-start: 0.5rem;
-  inset-inline-start: 0.5rem;
+  inset: 0.5rem auto auto 0.5rem;
+  z-index: 1;
   padding: 0.5rem 0.75rem;
   background: #fff;
   transform: translateY(-150%);
@@ -43,119 +44,304 @@ a:hover {
 }
 
 .shell {
-  width: min(100% - clamp(2.5rem, 7vw, 5rem), 48rem);
+  width: min(100% - clamp(2.5rem, 8vw, 6rem), 52rem);
   margin-inline: auto;
 }
 
 .site-header {
-  padding-block: 0.9rem;
   background: #fff;
-  border-bottom: 1px solid var(--border);
-}
-
-.brand {
-  color: inherit;
-  font: 600 0.9375rem/1.5 var(--mono);
-  text-decoration: none;
-}
-
-.brand:hover {
-  text-decoration: underline;
-}
-
-main {
-  padding-block: clamp(1.75rem, 4.5vw, 3rem) clamp(2.5rem, 6vw, 4rem);
-}
-
-h1 {
-  margin: 0 0 0.75rem;
-  font: 700 clamp(1.95rem, 5.5vw, 2.65rem)/1.22 var(--mono);
-  letter-spacing: -0.035em;
-  overflow-wrap: anywhere;
-}
-
-.lede {
-  margin: 0.65rem 0 0;
-  color: var(--text-secondary);
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
-}
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin: 0.8rem 0 0;
-  padding: 0;
-  list-style: none;
-  font: 0.875rem/1.65 var(--mono);
+  border-bottom: 1px solid var(--rule);
 }
 
 .header-inner,
-.header-inner nav {
+.header-inner nav,
+.social-links {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
+  align-items: baseline;
+  gap: 0.45rem 1.1rem;
+  font: 0.875rem/1.55 var(--mono);
 }
 
 .header-inner {
   justify-content: space-between;
+  padding-block: 0.85rem;
+}
+
+.brand,
+.header-inner nav a {
+  text-decoration: none;
+}
+
+.brand {
+  color: inherit;
+  font-weight: 700;
 }
 
 .header-inner nav a {
-  color: inherit;
-  font: 0.875rem/1.5 var(--mono);
+  color: var(--muted);
 }
 
-.header-inner nav a:not([aria-current], :hover, :focus-visible) {
-  text-decoration: none;
+.header-inner nav a[aria-current],
+.header-inner nav a:hover,
+.brand:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+main {
+  padding-block: clamp(2.6rem, 7vw, 5rem);
+}
+
+main.reading {
+  max-width: 38rem;
+}
+
+h1,
+.prose :is(h2, h3, h4, h5, h6) {
+  font-family: var(--mono);
+  letter-spacing: -0.035em;
+  line-height: 1.3em;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.45rem, 4vw, 2.05rem);
+}
+
+.lede {
+  max-width: 60ch;
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+.social-links {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .article-list {
   list-style: none;
+  margin: 1.65rem 0 0;
   padding: 0;
-  margin: 1.5rem 0 0;
+  border-top: 1px solid var(--rule);
+  font: 0.9rem/1.55 var(--mono);
 }
 
-.article-list li,
+.article-list li {
+  display: grid;
+  grid-template-columns: 11ch minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  padding-block: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.article-list a {
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.article-list a:not(:hover, :focus-visible) {
+  text-decoration: none;
+}
+
+.article-entry p {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font: 0.875rem/1.5 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.article-list time,
+.article-category,
+.metadata {
+  color: var(--muted);
+  font: 0.8125rem/1.55 var(--mono);
+}
+
 .article-heading {
-  border-bottom: 1px solid var(--border);
-  padding-block: 1rem;
-}
-
-.article-list h2 {
-  margin: 0.35rem 0 0;
-  font: 600 1.2rem/1.4 var(--mono);
-}
-
-.article-list p {
-  margin: 0.35rem 0 0;
-  color: var(--text-secondary);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.6rem;
 }
 
 .metadata {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 0.8rem;
-  color: var(--text-secondary);
-  font: 0.875rem/1.5 var(--mono);
-}
-
-.article-heading .metadata {
   margin-top: 0.8rem;
-}
-
-main.reading {
-  max-width: 42rem;
 }
 
 .prose {
   overflow-wrap: anywhere;
 }
 
+.prose :is(h2, h3, h4, h5, h6) {
+  margin-block: 1.8em 0.55em;
+}
+
+.prose h2 {
+  font-size: 1.3rem;
+}
+
+.prose p {
+  margin-block: 0.85em;
+}
+
+.prose :is(ul, ol) {
+  padding-inline-start: 1.35rem;
+}
+
+.prose li + li {
+  margin-top: 0.3em;
+}
+
+.prose li[data-marked-item]::marker {
+  color: transparent;
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 1px solid var(--rule);
+  color: var(--muted);
+}
+
+.prose code {
+  font: 0.875em/1.5 var(--mono);
+}
+
+.prose :not(pre) > code {
+  padding: 0.12em 0.25em;
+  background: var(--surface);
+}
+
 .prose pre {
-  overflow-x: auto;
-  overflow-wrap: normal;
+  margin: 1.15rem 0;
   padding: 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
+  overflow: auto;
+  overflow-wrap: normal;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose :is(th, td) {
+  padding: 0.35rem 0.65rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: start;
+}
+
+.prose hr {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.markdown-block {
+  display: flex;
+  flex-direction: column;
+  margin-block: 1.15rem;
+}
+
+.markdown-block > table {
+  min-width: 0;
+}
+
+.markdown-marker {
+  color: var(--marker-ink);
+  font: 0.8125rem/1.55 var(--mono);
+  white-space: nowrap;
+  margin-inline-end: 0.5rem;
+  user-select: none;
+}
+
+.markdown-marker::before {
+  content: attr(data-marker);
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) > .markdown-marker {
+  display: inline-block;
+  inset-block-start: 0;
+  line-height: inherit;
+  vertical-align: top;
+}
+
+.markdown-block > .markdown-marker {
+  order: -1;
+  margin-block-end: 0.25rem;
+}
+
+@media (min-width: 48rem) {
+  .prose [data-marked],
+  .markdown-block {
+    position: relative;
+  }
+
+  .prose > :is(ul, ol) {
+    padding-inline-start: 0;
+  }
+
+  .markdown-marker {
+    position: absolute;
+    inset-inline-end: calc(100% + 0.75rem);
+    inset-block-start: 0.26em;
+    max-width: min(14ch, calc((100vw - 38rem) / 2 - 1.25rem));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .prose blockquote > p[data-marked] > .markdown-marker {
+    inset-inline-end: calc(100% + 1.8rem);
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .prose > :is(ul, ol) {
+    padding-inline-start: 0;
+  }
+
+  .prose :is(ul, ol):not(.footnotes > ol) > li[data-marked-item] {
+    position: relative;
+    padding-inline-start: 1.8rem;
+  }
+
+  .prose :is(ul, ol):not(.footnotes > ol) > li[data-marked-item] > .markdown-marker,
+  .prose :is(ul, ol):not(.footnotes > ol) > li[data-marked-item] > p > .markdown-marker {
+    position: absolute;
+    inset-inline-start: 0;
+    margin: 0;
+    line-height: 2;
+  }
+
+  .prose li[data-marked-item] > :is(ul, ol) {
+    padding-inline-start: 0;
+  }
+}
+
+@media (max-width: 34rem) {
+  .article-list li {
+    grid-template-columns: auto 1fr;
+  }
+
+  .article-entry {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .article-category {
+    justify-self: end;
+  }
 }

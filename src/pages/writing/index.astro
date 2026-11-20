@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { articlePath, formatDate, getWriting } from '../../lib/writing';
+import { articlePath, getWriting } from '../../lib/writing';
 
 const posts = await getWriting();
 ---
@@ -10,12 +10,12 @@ const posts = await getWriting();
     <ul class="article-list">
       {posts.map(({ id, data }) => (
         <li>
-          <div class="metadata">
-            <time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
-            {data.category && <span>{data.category}</span>}
+          <time datetime={data.pubDate.toISOString()}>{data.pubDate.toISOString().slice(0, 10)}</time>
+          <div class="article-entry">
+            <a href={articlePath(id)}>{data.title}</a>
+            <p>{data.description}</p>
           </div>
-          <h2><a href={articlePath(id)}>{data.title}</a></h2>
-          <p>{data.description}</p>
+          {data.category && <span class="article-category">{data.category}</span>}
         </li>
       ))}
     </ul>

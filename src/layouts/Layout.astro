@@ -13,9 +13,9 @@ interface Props {
 const { title, description = site.description, published, category, reading } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | AI engineer and tech lead`;
 const links = [
-  { href: '/about/', label: 'About' },
-  { href: '/writing/', label: 'Writing' },
-  { href: '/rss.xml', label: 'RSS' },
+  { href: '/about/', label: '/about' },
+  { href: '/writing/', label: '/writing' },
+  { href: '/rss.xml', label: '/rss' },
 ];
 const canonical = new URL(Astro.url.pathname, site.origin);
 const image = new URL(site.socialImage, site.origin);
